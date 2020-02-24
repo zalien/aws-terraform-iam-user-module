@@ -5,6 +5,5 @@ resource "aws_iam_user" "user" {
 }
 
 resource "aws_iam_access_key" "user_key" {
-  for_each                  = aws_iam_user.user.name
-  user                      = each.value
+  user                      = aws_iam_user.user[each.value]
 }
