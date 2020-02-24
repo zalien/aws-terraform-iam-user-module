@@ -5,5 +5,7 @@ resource "aws_iam_user" "user" {
 }
 
 resource "aws_iam_access_key" "user_key" {
-  user                      = aws_iam_user.user[each.value]
+  depends_on = [aws_iam_user.user]
+  for_each   = var.name
+  user       = each.value
 }
